@@ -1,16 +1,21 @@
 {
-  "name": "vanity-console",
+  "name": "vanity-wallet-console",
   "version": "1.0.0",
   "description": "Create a vanity wallet on Ethereum from your terminal console",
   "main": "index.js",
   "bin": {
     "vanity-console": "./index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/QuantSoldier/vanity-console"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "QuantSoldier <quantsoldier@gmail.com>",
+  "license": "MIT",
+  "private": false,
   "devDependencies": {
     "@octokit/auth-basic": "^1.4.8",
     "@octokit/rest": "^18.0.11",
@@ -29,13 +34,10 @@
     "keccak": "^3.0.1",
     "lodash": "^4.17.20",
     "minimist": "^1.2.5",
+    "node-os-utils": "^1.3.2",
     "randombytes": "^2.1.0",
     "secp256k1": "^4.0.2",
     "simple-git": "^2.24.0",
     "touch": "^3.1.0"
-  },
-  "dependencies": {
-    "node-os-utils": "^1.3.2",
-    "os-utils": "0.0.14"
   }
 }
