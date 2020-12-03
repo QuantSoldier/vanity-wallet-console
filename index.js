@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-require('dotenv').config()
+// require('dotenv').config()
 const clear = require("clear");
 
 const { getVanityWallet, getDoubleVanityWallet } = require("./lib/vanity")
@@ -48,9 +48,8 @@ const main = async () => {
   ? computeDifficulty(input, isChecksum) 
   : computeDifficulty(inputStart+inputEnd, isChecksum)
 
-  const logFrequency = process.env.STEPS ? Number(process.env.STEPS) : estimateLogFrequency(diff)
-  console.log(logFrequency)
-  
+  // const logFrequency = process.env.NODE_ENV === 'development' ? Number(process.env.STEPS) : estimateLogFrequency(diff)
+  const logFrequency = estimateLogFrequency(diff)
   // let fileName = "keys/{fileName}.json"
 
   console.log("Starting vanity address hash calculations...")

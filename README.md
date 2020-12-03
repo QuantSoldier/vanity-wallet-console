@@ -27,12 +27,6 @@ Here are some example addresses that have been generated with this app:
 0x8882868860de58fdBF6Def09E03f08c49Fc87888
 ```
 
-## Settings
-
-All config settings are found in the `.env` file
-
-Logging Frequency - `STEPS` - Default 10000 - how many calculations before a logging message is emitted. This number should be adjusted higher for more intensive calculations.
-
 <br/>
 
 *Like this project? Buy me a coffee: ETH - 0xB33F3DDd63439f0EdBBee2952Ac3204113554Fd8*
