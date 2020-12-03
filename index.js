@@ -5,9 +5,10 @@ const clear = require("clear");
 
 const { getVanityWallet, getDoubleVanityWallet } = require("./lib/vanity")
 const { writeKeyFile } = require("./lib/file")
-const { logTitle } = require("./lib/logs");
+const { logTitle, estimateLogFrequency } = require("./lib/logs");
 const { getFunctionSelect, getSingleInputOptions, getDoubleInputOptions } = require('./lib/prompts');
 const chalk = require('chalk');
+const { computeDifficulty } = require('./lib/stats');
 
 // https://www.sitepoint.com/javascript-command-line-interface-cli-node-js/
 
@@ -36,23 +37,36 @@ const main = async () => {
   } else {
     values = await getDoubleInputOptions()
   }
+
+  let input = values.input || undefined
+  let inputStart = values.inputStart || undefined
+  let inputEnd = values.inputEnd || undefined
+  let isChecksum = values.case === 'yes'
+  let isSuffix = values.placement === 'suffix'
+
+  const diff = input 
+  ? computeDifficulty(input, isChecksum) 
+  : computeDifficulty(inputStart+inputEnd, isChecksum)
+
+  const logFrequency = process.env.STEPS ? Number(process.env.STEPS) : estimateLogFrequency(diff)
+  console.log(logFrequency)
   
-  const input = values.input || undefined
-  const inputStart = values.inputStart || undefined
-  const inputEnd = values.inputEnd || undefined
-  const isChecksum = values.case === false
-  const isSuffix = values.placement === 'suffix'
   // let fileName = "keys/{fileName}.json"
 
   console.log("Starting vanity address hash calculations...")
   console.time("Total Time Elapsed")  
   if (input) {
-    getVanityWallet(input, isChecksum, isSuffix, onAddress)
+    await getVanityWallet(input, isChecksum, isSuffix, logFrequency, onAddress)
   } else if (inputStart && inputEnd) {
-    getDoubleVanityWallet(inputStart, inputEnd, isChecksum, onAddress)
+    await getDoubleVanityWallet(inputStart, inputEnd, isChecksum, logFrequency, onAddress)
   } else {
     throw Error("An unhandled exception occurred. Could not get vanity address");
   }
 }
 
 main()
+.then(() => process.exit(0))
+.catch(error => {
+  console.error(error);
+  process.exit(1);
+})

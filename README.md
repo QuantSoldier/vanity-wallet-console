@@ -22,17 +22,17 @@ Here are some example addresses that have been generated with this app:
 
 ```
 0x000000d397E6f21813CE8E7f1Ec9C0271185cA24
-0xF01d62789f9c2902a844ab2CA4599E0Ed8e1FACE
+0xef933F4abC45392d777738ccB506c848c24Eface
 0xB33F3DDd63439f0EdBBee2952Ac3204113554Fd8
-0x88888819E533031366c7A04098f479333FBC2d62
+0x8882868860de58fdBF6Def09E03f08c49Fc87888
 ```
 
 ## Settings
 
 All config settings are found in the `.env` file
 
-Logging Frequency - `STEPS` - default 10000, how many calculations before a logging message is emitted
+Logging Frequency - `STEPS` - Default 10000 - how many calculations before a logging message is emitted. This number should be adjusted higher for more intensive calculations.
 
+<br/>
 
-
-*Buy me a coffee: ETH - 0xB33F3DDd63439f0EdBBee2952Ac3204113554Fd8*
+*Like this project? Buy me a coffee: ETH - 0xB33F3DDd63439f0EdBBee2952Ac3204113554Fd8*
