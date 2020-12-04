@@ -47,12 +47,14 @@ const main = async () => {
   const diff = input 
   ? computeDifficulty(input, isChecksum) 
   : computeDifficulty(inputStart+inputEnd, isChecksum)
+  console.log(chalk.yellow(`\nDifficulty of calculation: ${diff}\n`))
 
   // const logFrequency = process.env.NODE_ENV === 'development' ? Number(process.env.STEPS) : estimateLogFrequency(diff)
   const logFrequency = estimateLogFrequency(diff)
+  console.log(`Logging after every ${logFrequency} address calculations`)
   // let fileName = "keys/{fileName}.json"
 
-  console.log("Starting vanity address hash calculations...")
+  console.log("Starting vanity address calculations...\n")
   console.time("Total Time Elapsed")  
   if (input) {
     await getVanityWallet(input, isChecksum, isSuffix, logFrequency, onAddress)
@@ -64,8 +66,8 @@ const main = async () => {
 }
 
 main()
-.then(() => process.exit(0))
-.catch(error => {
-  console.error(error);
-  process.exit(1);
-})
+  .then(() => process.exit(0))
+  .catch(error => {
+    console.error(error);
+    process.exit(1);
+  })

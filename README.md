@@ -1,4 +1,19 @@
 # Vanity Wallet Console
+ 
+ __     __          _ _          __        __    _ _      _   
+ \ \   / /_ _ _ __ (_) |_ _   _  \ \      / /_ _| | | ___| |_ 
+  \ \ / / _` | '_ \| | __| | | |  \ \ /\ / / _` | | |/ _ \ __|
+   \ V / (_| | | | | | |_| |_| |   \ V  V / (_| | | |  __/ |_ 
+    \_/ \__,_|_| |_|_|\__|\__, |    \_/\_/ \__,_|_|_|\___|\__|
+                          |___/                               
+   ____                      _      
+  / ___|___  _ __  ___  ___ | | ___ 
+ | |   / _ \| '_ \/ __|/ _ \| |/ _ \
+ | |__| (_) | | | \__ \ (_) | |  __/
+  \____\___/|_| |_|___/\___/|_|\___|
+
+
+## Description
 
 Vanity Wallet Console allows you to generate Ethereum addresses with custom beginnings, endings, or both! This application runs in the terminal and is completely offline. All generated addresses are saved in `.txt` format to the current directory in the form `{address}.txt`. If a `keys/` folder exists in the directory this script was run in, the app will save the file there instead.
 
