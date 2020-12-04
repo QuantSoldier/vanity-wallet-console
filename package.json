@@ -1,6 +1,6 @@
 {
   "name": "vanity-wallet-console",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Create a vanity wallet on Ethereum from your terminal console",
   "main": "index.js",
   "bin": {
