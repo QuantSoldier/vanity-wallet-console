@@ -1,6 +1,6 @@
 {
   "name": "vanity-wallet-console",
-  "version": "1.7.1",
+  "version": "2.0.0",
   "description": "Create a vanity wallet on Ethereum from your terminal console",
   "main": "index.js",
   "bin": {
@@ -12,11 +12,14 @@
   },
   "keywords": [
     "ethereum",
+    "vanity",
     "wallet",
-    "crypto"
+    "keccak256",
+    "crypto",
+    "blockchain"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "QuantSoldier <quantsoldier@gmail.com>",
   "license": "MIT",
@@ -24,14 +27,16 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "clear": "^0.1.0",
-    "crypto": "^1.0.1",
-    "dotenv": "^8.2.0",
     "figlet": "^1.5.0",
     "inquirer": "^7.3.3",
     "keccak": "^3.0.1",
+    "key-encoder": "^2.0.3",
     "minimist": "^1.2.5",
     "node-os-utils": "^1.3.2",
-    "randombytes": "^2.1.0",
     "secp256k1": "^4.0.2"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "mocha": "^8.2.1"
   }
 }

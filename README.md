@@ -36,6 +36,28 @@ Here are some example addresses that have been generated with this app:
 0x8882868860de58fdBF6Def09E03f08c49Fc87888
 ```
 
+## What is this application doing?
+
+Ethereum addresses are generated through a series of mathematical operations. Ethereum uses an elliptic curve hashing algorithm called P-256K to generate public keys. Public keys are then hashed and checksummed to produce a final 20-byte (40 hexidecimal characters) long address.
+
+1. Generate a random 32-length array of bytes. Use this byte array as the private key.  
+2. Convert the byte array to hexidecimal string representation. Each byte is 8 bits of information, with each 4 bit half representing one hexidecimal character. 
+3. Use the elliptic curve secp256k1 hashing algorithm to derive the public key.  
+4. Derive the Ethereum address by converting the first significant 40 bytes to hexidecimal characters. Skip the first byte (always 0x04, denotes uncompressed version)
+5. Run checks to see if the generated address matches the user input
+6. If case sensitivity is enabled, validate that the address produces a valid ENS checksum. 
+
+## Resources
+
+- Vanity Eth: https://github.com/bokub/vanity-eth
+- NodeJS Crypto: https://nodejs.org/api/crypto.html  
+- Elliptic Curve Keys: http://davidederosa.com/basic-blockchain-programming/elliptic-curve-keys/
+- EIP-55 (Checksums): https://github.com/ethereum/EIPs/blob/master/EIPS/eip-55.md
+- PEM to JW: https://github.com/callstats-io/pem-to-jw  
+- P-256K to PEM: https://gist.github.com/miguelmota/3793b160992b4ea0b616497b8e5aee2f  
+- ECC RFC: https://tools.ietf.org/html/rfc5480  
+- JWK RFC: https://self-issued.info/docs/draft-ietf-jose-json-web-key.html
+
 <br/>
 
 *Like this project? Buy me a coffee: ETH - 0xB33F3DDd63439f0EdBBee2952Ac3204113554Fd8*

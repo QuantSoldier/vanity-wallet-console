@@ -1,26 +1,28 @@
 #!/usr/bin/env node
 
-// require('dotenv').config()
+//require('dotenv').config()
 const clear = require("clear");
+const chalk = require('chalk');
 
 const { getVanityWallet, getDoubleVanityWallet } = require("./lib/vanity")
-const { writeKeyFile } = require("./lib/file")
-const { logTitle, estimateLogFrequency } = require("./lib/logs");
+const { writeKeyFile, writeTxtFile, getFileContents } = require("./lib/file")
+const { logTitle, getLogFrequency } = require("./lib/logs");
 const { getFunctionSelect, getSingleInputOptions, getDoubleInputOptions } = require('./lib/prompts');
-const chalk = require('chalk');
 const { computeDifficulty } = require('./lib/stats');
 
 // https://www.sitepoint.com/javascript-command-line-interface-cli-node-js/
 
-const onAddress = ({ address, privKey, attempts }) => {
-  console.log(`Found address ${address} after ${attempts} attempts.`)
+const onAddress = ({ address, privKey, pubKey, attempts }) => {
+  console.log(
+    chalk.whiteBright(`Found address ${address} after ${attempts} attempts.\n`)
+  )
   
   try {
-    writeKeyFile(address, privKey)
+    writeKeyFile(address, privKey, pubKey)
+    writeTxtFile(address, privKey, pubKey)
   } catch {
     console.log("Failed to write file. Fallback to logging key information:\n")
-    const ts = new Date(Date.now())
-    console.log(chalk.yellow(`[${ts.toUTCString()}]\nAddress: ${address}\nPrivate Key: ${privKey}\n`))
+    console.log(chalk.yellow(`${getFileContents(address, privKey, pubKey)}\n`))
   }
 
   console.timeEnd('Total Time Elapsed')
@@ -50,7 +52,7 @@ const main = async () => {
   console.log(chalk.yellow(`\nDifficulty of calculation: ${diff}\n`))
 
   // const logFrequency = process.env.NODE_ENV === 'development' ? Number(process.env.STEPS) : estimateLogFrequency(diff)
-  const logFrequency = estimateLogFrequency(diff)
+  const logFrequency = getLogFrequency(diff)
   console.log(`Logging after every ${logFrequency} address calculations`)
   // let fileName = "keys/{fileName}.json"
 
@@ -66,8 +68,8 @@ const main = async () => {
 }
 
 main()
-  .then(() => process.exit(0))
-  .catch(error => {
-    console.error(error);
-    process.exit(1);
-  })
+.then(() => process.exit(0))
+.catch(error => {
+  console.error(error);
+  process.exit(1);
+})
